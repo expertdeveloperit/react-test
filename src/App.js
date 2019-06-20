@@ -1,31 +1,27 @@
-import React from 'react'
-import { Provider, Subscribe } from 'unstated'
+import React from "react";
+import { Provider, Subscribe } from "unstated";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import TodosContainer from './store'
+import main from "./main";
+import AddItem from "./components/AddItem";
 
-import TodoList from './components/TodoList'
-import AddTodo from './components/AddTodo'
-
-function App () {
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+function App() {
   return (
     <Provider>
       <Wrapper>
-        <Subscribe to={[TodosContainer]}>
-          {todos => {
-            const list = todos.getList()
-            return (
-              <TodosWrapper>
-                <AddTodo onAddTodo={todos.createTodo} />
-                <TodoList items={list} toggleComplete={todos.toggleComplete} />
-              </TodosWrapper>
-            )
-          }}
-        </Subscribe>
+        <TodosWrapper>
+          <Router>
+            <div>
+              <Route exact path="/" component={main} />
+              <Route exact path="/addItem/:id" component={AddItem} />
+            </div>
+          </Router>
+        </TodosWrapper>
       </Wrapper>
     </Provider>
-  )
+  );
 }
 
 const Wrapper = styled.div`
@@ -37,12 +33,12 @@ const Wrapper = styled.div`
   justify-content: center;
   font-size: 24px;
   color: white;
-`
+`;
 
 const TodosWrapper = styled.div`
   max-width: 500px;
   display: flex;
   flex-direction: column;
-`
+`;
 
-export default App
+export default App;
