@@ -64,8 +64,8 @@ class TodoItem extends React.Component {
           {this.state.showList ? (
             <List>
               {items != undefined
-                ? items.map(function(item) {
-                    return <ListLi>{item}</ListLi>;
+                ? items.map((item, index) => {
+                    return <ListLi key={index}>{item}</ListLi>;
                   })
                 : "No Added Items"}
             </List>

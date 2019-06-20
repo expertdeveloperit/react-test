@@ -1,5 +1,5 @@
 import React from "react";
-import { Provider, Subscribe } from "unstated";
+import { Subscribe } from "unstated";
 import styled from "styled-components";
 import TodosContainer from "../store";
 import { withRouter } from "react-router-dom";

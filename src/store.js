@@ -39,11 +39,17 @@ class TodosContainer extends Container {
 
   readStorage() {
     if (window && window.localStorage) {
-      const state = window.localStorage.getItem("appState");
-      return JSON.parse(state);
+      let state = window.localStorage.getItem("appState");
+      if (state) {
+        let listData = JSON.parse(state);
+        if (listData.list.length > 0) {
+          return JSON.parse(state);
+        } else {
+          return defaultState;
+        }
+      }
+      return defaultState;
     }
-
-    return defaultState;
   }
 
   syncStorage() {
